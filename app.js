@@ -21,16 +21,21 @@ app.get('/', (req, res) => {
 });
 
 app.get('/beers', (req, res) => {
-  let data = {};
   punkAPI.getBeers()
-  .then(beersFromApi => console.log('Beers from the database: ', beersFromApi))
-  .then(res.render('beers', data))
+  .then(beersFromApi => {
+  // console.log('Beers from the database: ', beersFromApi)
+  res.render('beers', {beers:beersFromApi})
+})
   .catch(error => console.log(error));
-});
+  });
 
 app.get('/random-beer', (req, res) => {
   punkAPI.getRandom()
-  res.render('random-beer');
+  .then(randomFromAPI => {
+    // console.log('randombeer: ', randomFromAPI)
+    res.render('random-beer', {randombeer:randomFromAPI})
+  })
+  .catch(error => console.log(error));
 });
 
 

@@ -1,3 +1,8 @@
-{{!-- {{#each image_url}}
-    <img src="{{this}}"/>
-{{/each}} --}}
+<p>BEERS PAGE</p>
+
+{{#each beers}}
+    <p>{{this.name}}</p>
+    <img src="{{this.image_url}}" alt="beer img"/>
+    <p>{{this.description}}</p>
+    <p>{{this.tagline}}</p>
+{{/each}}
