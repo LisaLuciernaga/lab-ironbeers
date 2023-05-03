@@ -14,9 +14,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Register the location for handlebars partials here:
 
-// ...
 
 // Add the route handlers here:
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+app.get('/beers', (req, res) => {
+  let data = {};
+  punkAPI.getBeers()
+  .then(beersFromApi => console.log('Beers from the database: ', beersFromApi))
+  .then(res.render('beers', data))
+  .catch(error => console.log(error));
+});
+
+app.get('/random-beer', (req, res) => {
+  punkAPI.getRandom()
+  res.render('random-beer');
+});
+
 
 app.get('/', (req, res) => {
   res.render('index');
